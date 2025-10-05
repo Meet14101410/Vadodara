@@ -1,0 +1,50 @@
+class VadodaraInfoSystem:
+    """A basic information system for Vadodara city."""
+    
+    def __init__(self):
+        self.city_facts = {
+            "Location": "Gujarat, India (on the banks of the Vishwamitri River)",
+            "Population": "Approx. 2.2 million (2023)",
+            "Known For": "Cultural Capital of Gujarat, seat of the Gaekwad dynasty, and M.S. University."
+        }
+        self.points_of_interest = [
+            {"name": "Laxmi Vilas Palace", "type": "Royal Residence", "description": "A magnificent 19th-century palace, still the residence of the royal Gaekwad family."},
+            {"name": "Sayaji Baug (Kamati Baug)", "type": "Public Park", "description": "A large public park housing a museum, zoo, and an aquarium."},
+            {"name": "EME Temple", "type": "Religious Site", "description": "A unique temple managed by the Indian Army's EME wing, famous for its aluminum sheet architecture."}
+        ]
+
+    def get_city_fact(self, fact_name):
+        """Retrieves and prints a specific city fact."""
+        if fact_name in self.city_facts:
+            print(f"{fact_name}: {self.city_facts[fact_name]}")
+        else:
+            print(f"Fact not found: {fact_name}")
+
+    def search_landmarks(self, search_term):
+        """Searches for landmarks by name or type (case-insensitive)."""
+        print(f"\n--- Search Results for '{search_term}' ---")
+        lower_search_term = search_term.lower()
+        found = False
+        
+        for landmark in self.points_of_interest:
+            # Check if search term is in name or type (case-insensitive)
+            if lower_search_term in landmark["name"].lower() or lower_search_term in landmark["type"].lower():
+                print(f"Name: {landmark['name']}")
+                print(f"Type: {landmark['type']}")
+                print(f"Description: {landmark['description']}")
+                print("-" * 40)
+                found = True
+        
+        if not found:
+            print("No matching landmarks found.")
+
+# Main script logic
+info_system = VadodaraInfoSystem()
+
+# Display general facts
+info_system.get_city_fact("Population")
+info_system.get_city_fact("Known For")
+
+# Search for landmarks
+info_system.search_landmarks("Temple")
+info_system.search_landmarks("Royal")
